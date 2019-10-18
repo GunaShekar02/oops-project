@@ -3,11 +3,11 @@ using namespace std;
 
 class Hospital{
 protected:
-	string Name,Location,Contact;
+	string Name,Location,contact;
 public:
 	Hospital(string name,string l,string c);
 	void getinfo();	
-}
+};
 
 Hospital::Hospital(string name,string l,string c){
 		Name=name;
@@ -22,3 +22,5 @@ void Hospital::getinfo(){
 	cout<<"Contact Number: "<<contact<<endl;
 	
 }
+
+

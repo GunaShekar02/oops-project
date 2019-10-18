@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "person.h"
+#include "patient.h"
 
 //Person contructor
 Person::Person(string name,string add, string cont, string d, string a){
@@ -13,9 +13,10 @@ Person::Person(string name,string add, string cont, string d, string a){
 }
 
 //Patient constructor
-Patient::Patient(string name,string add, string cont, string d, string a, long int pId) :
-Person(name,add, cont, d, a){
+Patient::Patient(string name,string add, string cont, string d, string a, long int pId, Record &r) :
+Person(name,add, cont, d, a),record(r){
 	patientId=pId;
+
 	
 }
 
@@ -27,38 +28,40 @@ void Patient::getinfo(){
 	cout<<"Contact Number: "<<contact<<endl;
 	cout<<"Date of Birth: "<<dob<<endl;
 	cout<<"Aadhaar Number: "<<Aadhaar<<endl;
+	record.getinfo();
 }
 
 //staff constructor
 Staff::
-Staff(string name,string add, string cont, string d, string a, long int sId,string date,long int sal, string deg) :
+Staff(string name,string add, string cont, string d, string a, long int sId,string date,long int sal, string deg,Hospital *h) :
 Person(name,add, cont, d, a){
 	staffId=sId;
 	DOJ=date;
 	salary=sal;
 	degree=deg;
+	hospital=h;
 }
 
 //Medical constructor
 Medical::
-Medical(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec) :
-Staff(name,add, cont, d, a,sId,date,sal,deg){
+Medical(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec,Hospital *h) :
+Staff(name,add, cont, d, a,sId,date,sal,deg,h){
 
 	specialisation=spec;
 }
 	
 //Manegerial constructor
 Manegerial::
-Manegerial(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string j) :
-Staff(name,add, cont, d, a,sId,date,sal,deg){
+Manegerial(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string j,Hospital *h) :
+Staff(name,add, cont, d, a,sId,date,sal,deg,h){
 	
 	job=j;
 }
 
 //Doctor constructor
 Doctor::
-Doctor(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec,string reg) :
-Medical(name,add, cont, d, a,sId,date,sal,deg,spec){
+Doctor(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec,string reg,Hospital *h) :
+Medical(name,add, cont, d, a,sId,date,sal,deg,spec,h){
 
 	registrationNumber=reg;
 }
@@ -75,13 +78,14 @@ void Doctor::getinfo(){
 	cout<<"Date of Joining: "<<DOJ<<endl;
 	cout<<"Salary: "<<salary<<endl;
 	cout<<"Degree: "<<degree<<endl;
-	cout<<"Specialisation: "<<spec<<endl;
+	cout<<"Specialisation: "<<specialisation<<endl;
+	hospital->getinfo();
 }
 
 //Nurse constructor
 Nurse::
-Nurse(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec,string nid) :
-Medical(name,add, cont, d, a,sId,date,sal,deg,spec){
+Nurse(string name,string add, string cont, string d, string a, long int sId,string date,long int sal,string deg,string spec,string nid,Hospital *h) :
+Medical(name,add, cont, d, a,sId,date,sal,deg,spec,h){
 
 	nurseId=nid;
 }
@@ -89,7 +93,7 @@ Medical(name,add, cont, d, a,sId,date,sal,deg,spec){
 //Getting details of a Nurse
 void Nurse::getinfo(){
 	cout<<"Staff ID of the Nurse: "<<staffId<<endl;
-	cout<<"Registration ID of Nurse: "<<nid<<endl;
+	cout<<"Registration ID of Nurse: "<<nurseId<<endl;
 	cout<<"Name of Nurse: "<< Name<<endl;
 	cout<<"Address of Nurse: "<<Address<<endl;
 	cout<<"Contact Number: "<<contact<<endl;
@@ -98,11 +102,17 @@ void Nurse::getinfo(){
 	cout<<"Date of Joining: "<<DOJ<<endl;
 	cout<<"Salary: "<<salary<<endl;
 	cout<<"Degree: "<<degree<<endl;
-	cout<<"Specialisation: "<<spec<<endl;
+	cout<<"Specialisation: "<<specialisation<<endl;
+	hospital->getinfo();
 }
 
-
-
 int main(){
-	Patient p("Aditi","aaaa","aaaa","aaaa","aaaa",12333);
+	Hospital *h=new Hospital("aas","asd","qwerty");
+	Doctor *dd=new Doctor("sss","asd","asqss","12213","dwdwd",12345,"wsdf",1234,"asdf","asdf","sdf",h);
+
+	Record r(1233,"asas","asas","213132",h,dd);
+
+	Nurse p("sss","asd","asqss","12213","dwdwd",12345,"wsdf",1234,"asdf","asdf","sdf",h);
+
+	p.getinfo();
 }
