@@ -1,7 +1,11 @@
 #include <iostream>
 using namespace std;
 
+#include "Staff.h"
 #include "Patient.h"
+#include "Record.h"
+
+int Staff::numberOfStaff = 0;
 
 //staff constructor
 Staff::Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
@@ -35,6 +39,11 @@ Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _speci
 	registrationNumber = _registrationNumber;
 }
 
+void Doctor::addRecord(Patient &patient, string _disease, string _startDate, string _status, Hospital *_hospital = nullptr){
+	Record record(_disease, _startDate, _status, _hospital);
+	patient.addRecord(record);
+}
+
 //Getting details of a Doctor
 void Doctor::getInfo(){
 	cout<<"Staff ID of the Doctor: "<<staffId<<endl;
@@ -48,8 +57,11 @@ void Doctor::getInfo(){
 	cout<<"Salary: "<<salary<<endl;
 	cout<<"Degree: "<<degree<<endl;
 	cout<<"Specialisation: "<<specialisation<<endl;
-    cout<<"---HOSPITAL---"<<endl;
-	hospital->getInfo();
+	if(hospital){
+		cout<<"---HOSPITAL---"<<endl;
+		hospital->getInfo();
+	}
+	cout<<endl;
 }
 
 //Nurse constructor

@@ -2,17 +2,21 @@
 #include<iostream>
 using namespace std;
 
+#ifndef RECORD_H
+#define RECORD_H
+
 #include "Hospital.h"
-#include "Staff.h"
 
 class Record{
-	static int numberOfRecords;
 protected:
 	long int id;
 	string disease, startDate, status;
 	Hospital *hospital;
-	Doctor *doctor;
+	// Doctor *doctor;
 public:
-	Record(string _disease, string _startDate, string _status, Doctor *_doctor, Hospital *_hospital = nullptr);
+	static int numberOfRecords;
+	Record(string _disease, string _startDate, string _status, Hospital *_hospital);
 	void getInfo();	
 };
+
+#endif
