@@ -19,6 +19,7 @@ public:
 	void getInfo();
 	void addRecord(Record &record);
 	void showRecords();
+	void Write();
 };
 
 #endif

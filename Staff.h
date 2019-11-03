@@ -36,6 +36,7 @@ protected:
 public:
 	Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
         long int _salary,string _degree, string _job, Hospital *_hospital);
+	void registerPatient(string _name, string _address, string _contact, string _dob, string _aadhar);
 };
 
 
@@ -46,9 +47,11 @@ protected:
 	string registrationNumber;
 public:
 	Doctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree, string _specialisation, string _registrationNumber, Hospital *_hospital);
+        long int _salary,string _degree, string _specialisation, Hospital *_hospital);
 	void getInfo();
 	void addRecord(Patient &patient, string _disease, string _startDate, string _status, Hospital *_hospital);
+	void Read();
+	void Write();
 };
 
 //Nurse class

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string.h>
 using namespace std;
 
 #include "Patient.h"
@@ -30,4 +32,27 @@ void Patient::showRecords(){
 	for(int i=0; i<records.size(); ++i){
 		records[i].getInfo();
 	}
+}
+
+void Patient::Write(){
+	fstream file;
+    string line;
+    long temp=0;
+    file.open("Patients.txt", ios::app | ios::in);
+    while(!file.eof()){
+        getline(file, line);
+        if(line[0] == 'P')
+            temp = stoi(line.substr(4));
+    }
+    file.close();
+	patientId = temp+1;
+    file.open("Patients.txt", ios::app | ios::in);
+    file<<"PID: "<<patientId<<endl;
+    file<<"Name: "<<name<<endl;
+    file<<"Address: "<<address<<endl;
+    file<<"Contact: "<<contact<<endl;
+	file<<"DOB: "<<dob<<endl;
+	file<<"Aadhar: "<<aadhaar<<endl;
+	file<<"RECORDS"<<endl;
+	file.close();
 }
