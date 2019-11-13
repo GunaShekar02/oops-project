@@ -58,9 +58,61 @@ Doctor::Doctor(string _name, string _address, string _contact, string _dob, stri
 Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _specialisation, _hospital){
 }
 
-void Doctor::addRecord(Patient &patient, string _disease, string _startDate, string _status, Hospital *_hospital = nullptr){
-	Record record(_disease, _startDate, _status, _hospital);
-	patient.addRecord(record);
+void Doctor::addRecord(long _patientId, string _disease, string _startDate, string _status, long _hospitalId){
+	fstream file;
+    string line;
+    long flag=0;
+	file.open("Hospitals.txt", ios::app | ios::in);
+	while(!file.eof()){
+		getline(file, line);
+		if(line[0] == 'I' && stoi(line.substr(3)) == _hospitalId){
+			flag = 1;
+			break;
+		}
+	}
+	if(!flag){
+		cout<<"Invalid Hospital ID"<<endl;
+		return;
+	}
+	flag = 0;
+	file.close();
+    file.open("Patients.txt", ios::app | ios::in);
+	fstream tempFile;
+	tempFile.open("temp.txt", ios::app | ios::in);
+    while(!file.eof()){
+        getline(file, line);
+        if(line[0] == 'P' && stoi(line.substr(4)) == _patientId){
+			tempFile<<line<<endl;
+			flag = 1;
+			Record record(_disease, _startDate, _status, _hospitalId);
+			getline(file, line);
+			long counter = 0;
+			while(line[0] != 'P'){
+				if(line[0] == 'R')
+					counter++;
+				tempFile<<line<<endl;
+				if(file.eof())
+					break;
+				getline(file, line);
+			}
+			tempFile<<"RID: "<<counter<<endl;
+			tempFile<<"Disease: "<<_disease<<endl;
+			tempFile<<"Start: "<<_startDate<<endl;
+			tempFile<<"Status: "<<_status<<endl;
+			tempFile<<"HospitalID: "<<_hospitalId<<endl;
+			tempFile<<line<<endl;
+		}
+		else{
+			tempFile<<line<<endl;
+		}
+    }
+	file.close();
+	tempFile.close();
+	remove("Patients.txt");
+	rename("temp.txt","Patients.txt");
+    
+	// Record record(_disease, _startDate, _status, _hospital);
+	// patient.addRecord(record);
 }
 
 void Doctor::Write(){
@@ -87,9 +139,12 @@ void Doctor::Write(){
 	file<<"Degree: "<<degree<<endl;
 	file<<"Specialization: "<<specialisation<<endl;
 	if(hospital){
+		cout<<"M";
 		file<<"HOSPITAL DETAILS"<<endl;
 		(*hospital).Write("Doctors.txt");
 	}
+	// cout<<"Before close"<<endl;
+	file.close();
 }
 
 //Getting details of a Doctor

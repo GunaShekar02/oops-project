@@ -9,13 +9,11 @@ using namespace std;
 
 class Record{
 protected:
-	long int id;
+	long int recordId, hospitalId;
 	string disease, startDate, status;
-	Hospital *hospital;
-	// Doctor *doctor;
 public:
 	static int numberOfRecords;
-	Record(string _disease, string _startDate, string _status, Hospital *_hospital);
+	Record(string _disease, string _startDate, string _status, long _hospitalId);
 	void getInfo();	
 };
 

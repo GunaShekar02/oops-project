@@ -24,14 +24,26 @@ void Patient::getInfo(){
 	cout<<"Aadhaar Number: "<<aadhaar<<endl;
 }
 
-void Patient::addRecord(Record &record){
-	records.push_back(record);
-}
-
-void Patient::showRecords(){
-	for(int i=0; i<records.size(); ++i){
-		records[i].getInfo();
+void Patient::showRecords(int id){
+	fstream file;
+    string line;
+	file.open("Patients.txt", ios::app | ios::in);
+	while(!file.eof()){
+        getline(file, line);
+        if(line[0] == 'P' && stoi(line.substr(4)) == id){
+			while(line[0]!='R')
+				getline(file, line);
+			break;
+		}
+    }
+	getline(file, line);
+	while(!file.eof()){
+		cout<<line<<endl;
+		getline(file, line);
+		if(line[0] == 'P')
+			break;
 	}
+
 }
 
 void Patient::Write(){

@@ -13,6 +13,7 @@ void Admin::createHospital(string _name, string _location, string _contact){
     Hospital hospital(_name, _location, _contact);
     fstream file;
     hospital.Write("Hospitals.txt");
+    // cout<<"Returned to admin"<<endl;
 }
 
 void Admin::registerDoctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,

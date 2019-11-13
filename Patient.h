@@ -17,8 +17,7 @@ public:
 	static int numberOfPatients;
 	Patient(string _name, string _address, string _contact, string _dob, string _aadhar);
 	void getInfo();
-	void addRecord(Record &record);
-	void showRecords();
+	void showRecords(int id);
 	void Write();
 };
 
