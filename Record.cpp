@@ -5,23 +5,20 @@ using namespace std;
 
 int Record::numberOfRecords = 0;
 
-Record::Record(string _disease, string _startDate, string _status, Hospital *_hospital = nullptr){
-    id = ++numberOfRecords;
-    disease = _disease;
-    startDate = _startDate;
-    status = _status;
-    // doctor = _doctor;
-    hospital = _hospital;
+Record::Record(string _disease, string _startDate, string _status, long _hospitalId)
+{
+  disease = _disease;
+  startDate = _startDate;
+  status = _status;
+  hospitalId = _hospitalId;
 }
 
-void Record::getInfo(){
-    cout<<"Record ID: "<<id<<endl;
-    cout<<"Disease : "<<disease<<endl;
-    cout<<"Start Date : "<<startDate<<endl;
-    cout<<"Status : "<<status<<endl;
-    if(hospital){
-        cout<<"----HOSPITAL----"<<endl;
-        hospital->getInfo();
-    }
-    cout<<endl;
+void Record::getInfo()
+{
+  cout << "Record ID: " << recordId << endl;
+  cout << "Disease : " << disease << endl;
+  cout << "Start Date : " << startDate << endl;
+  cout << "Status : " << status << endl;
+  cout << "Hospital ID: " << hospitalId << endl;
+  cout << endl;
 }
