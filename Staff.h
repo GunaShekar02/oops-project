@@ -7,47 +7,54 @@
 
 //Staff class
 //Need to create association with hospital
-class Staff : public Person{
+class Staff : public Person
+{
 protected:
 	int staffId;
 	string doj;
 	long int salary;
 	string degree;
 	Hospital *hospital;
+
 public:
-    static int numberOfStaff;
+	static int numberOfStaff;
 	Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree,Hospital *_hospital);
+				long int _salary, string _degree, Hospital *_hospital);
 };
 
 //Medical class
-class Medical : public Staff{
+class Medical : public Staff
+{
 protected:
 	string specialisation;
+
 public:
 	Medical(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree, string _specialisation, Hospital *_hospital);
+					long int _salary, string _degree, string _specialisation, Hospital *_hospital);
 };
 
 //Manegerial class
-class Manegerial : public Staff{
+class Manegerial : public Staff
+{
 protected:
 	string job;
+
 public:
 	Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree, string _job, Hospital *_hospital);
+						 long int _salary, string _degree, string _job, Hospital *_hospital);
 	void registerPatient(string _name, string _address, string _contact, string _dob, string _aadhar);
 };
 
-
 //Doctor class
 //Inherits Medical class
-class Doctor : public Medical{
-protected:	
+class Doctor : public Medical
+{
+protected:
 	int registrationNumber;
+
 public:
 	Doctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree, string _specialisation, Hospital *_hospital);
+				 long int _salary, string _degree, string _specialisation, Hospital *_hospital);
 	void getInfo();
 	void addRecord(long _patientId, string _disease, string _startDate, string _status, long _hospitalId);
 	void Read();
@@ -56,12 +63,14 @@ public:
 
 //Nurse class
 //Inherits Medical class
-class Nurse : public Medical{
+class Nurse : public Medical
+{
 protected:
 	string nurseId;
+
 public:
 	Nurse(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-        long int _salary,string _degree, string _specialisation, string _nurseId, Hospital *_hospital);
+				long int _salary, string _degree, string _specialisation, string _nurseId, Hospital *_hospital);
 	void getInfo();
 };
 
