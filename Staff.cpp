@@ -11,25 +11,25 @@ int Staff::numberOfStaff = 0;
 
 //staff constructor
 Staff::Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-						 long int _salary, string _degree, Hospital *_hospital = nullptr) : Person(_name, _address, _contact, _dob, _aadhar)
+						 long int _salary, string _degree, long _hospitalId) : Person(_name, _address, _contact, _dob, _aadhar)
 {
 	staffId = ++numberOfStaff;
 	doj = _doj;
 	salary = _salary;
 	degree = _degree;
-	hospital = _hospital;
+	hospitalId= _hospitalId
 }
 
 //Medical constructor
 Medical::Medical(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-								 long int _salary, string _degree, string _specialisation, Hospital *_hospital = nullptr) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospital)
+								 long int _salary, string _degree, string _specialisation, long _hospitalId) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospitalId)
 {
 	specialisation = _specialisation;
 }
 
 //Manegerial constructor
 Manegerial::Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-											 long int _salary, string _degree, string _job, Hospital *_hospital = nullptr) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospital)
+											 long int _salary, string _degree, string _job, long _hospitalId) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospitalId)
 {
 	job = _job;
 }
@@ -58,7 +58,7 @@ void Manegerial::registerPatient(string _name, string _address, string _contact,
 
 //Doctor constructor
 Doctor::Doctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-							 long int _salary, string _degree, string _specialisation, Hospital *_hospital = nullptr) : Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _specialisation, _hospital)
+							 long int _salary, string _degree, string _specialisation, long _hospitalId) : Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _specialisation, _hospitalId)
 {
 }
 
@@ -152,12 +152,37 @@ void Doctor::Write()
 	file << "Salary: " << salary << endl;
 	file << "Degree: " << degree << endl;
 	file << "Specialization: " << specialisation << endl;
-	if (hospital)
+	file << "Hospital Id: "<< hospitalId <<endl;
+	// cout<<"Before close"<<endl;
+	file.close();
+}
+
+void Manegerial::Write()
+{
+	fstream file;
+	string line;
+	long temp = 0;
+	file.open("Managers.txt", ios::app | ios::in);
+	while (!file.eof())
 	{
-		cout << "M";
-		file << "HOSPITAL DETAILS" << endl;
-		(*hospital).Write("Doctors.txt");
+		getline(file, line);
+		if (line[0] == 'R')
+			temp = stoi(line.substr(4));
 	}
+	file.close();
+	registrationNumber = temp + 1;
+	file.open("Managers.txt", ios::app | ios::in);
+	file << "RNO: " << registrationNumber << endl;
+	file << "Name: " << name << endl;
+	file << "Address: " << address << endl;
+	file << "Contact: " << contact << endl;
+	file << "DOB: " << dob << endl;
+	file << "Aadhaar: " << aadhaar << endl;
+	file << "DOJ: " << doj << endl;
+	file << "Salary: " << salary << endl;
+	file << "Degree: " << degree << endl;
+	file << "Job: " << job << endl;
+	file<<"Hospital Id: "<<hospitalId<<endl;
 	// cout<<"Before close"<<endl;
 	file.close();
 }
@@ -176,17 +201,13 @@ void Doctor::getInfo()
 	cout << "Salary: " << salary << endl;
 	cout << "Degree: " << degree << endl;
 	cout << "Specialisation: " << specialisation << endl;
-	if (hospital)
-	{
-		cout << "---HOSPITAL---" << endl;
-		hospital->getInfo();
-	}
+	cout <<"Hospital Id: "<<hospitalId<<endl;
 	cout << endl;
 }
 
 //Nurse constructor
 Nurse::Nurse(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-						 long int _salary, string _degree, string _specialisation, string _nurseId, Hospital *_hospital = nullptr) : Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _specialisation, _hospital)
+						 long int _salary, string _degree, string _specialisation, string _nurseId, long _hospitalId) : Medical(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _specialisation, _hospitalId)
 {
 	nurseId = _nurseId;
 }

@@ -14,12 +14,12 @@ protected:
 	string doj;
 	long int salary;
 	string degree;
-	Hospital *hospital;
+	long _hospitalId;
 
 public:
 	static int numberOfStaff;
 	Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-				long int _salary, string _degree, Hospital *_hospital);
+				long int _salary, string _degree, long _hospitalId);
 };
 
 //Medical class
@@ -30,7 +30,7 @@ protected:
 
 public:
 	Medical(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-					long int _salary, string _degree, string _specialisation, Hospital *_hospital);
+					long int _salary, string _degree, string _specialisation, long _hospitalId);
 };
 
 //Manegerial class
@@ -41,8 +41,9 @@ protected:
 
 public:
 	Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-						 long int _salary, string _degree, string _job, Hospital *_hospital);
+						 long int _salary, string _degree, string _job, long _hospitalId);
 	void registerPatient(string _name, string _address, string _contact, string _dob, string _aadhar);
+	void Write();
 };
 
 //Doctor class
@@ -54,7 +55,7 @@ protected:
 
 public:
 	Doctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-				 long int _salary, string _degree, string _specialisation, Hospital *_hospital);
+				 long int _salary, string _degree, string _specialisation, long _hospitalId);
 	void getInfo();
 	void addRecord(long _patientId, string _disease, string _startDate, string _status, long _hospitalId);
 	void Read();
@@ -70,7 +71,7 @@ protected:
 
 public:
 	Nurse(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-				long int _salary, string _degree, string _specialisation, string _nurseId, Hospital *_hospital);
+				long int _salary, string _degree, string _specialisation, string _nurseId, long _hospitalId);
 	void getInfo();
 };
 

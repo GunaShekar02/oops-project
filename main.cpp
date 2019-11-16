@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 #include "Hospital.h"
@@ -10,22 +10,56 @@ using namespace std;
 
 int main()
 {
-  // Doctor doctor1("Dr. ABC", "Address1", "98765", "7-8-1989", "Aadhar1", "10-10-2015", 1000000,
-  //     "MBBS", "Neurology", "DOC-1", nullptr);
-  // doctor1.getInfo();
-  // Patient patient1("Patient 1", "Address P1", "1234", "7-8-2000", "Aadhar P1");
-  // doctor1.addRecord(patient1, "Brain Cancer", "10-11-2018", "Ongoing", nullptr);
-  // patient1.showRecords();
-  Admin admin;
-  cout << admin.getCountOfDisease("Malaria");
-  // admin.createHospital("Apollo", "Gwalior", "9876787654");
-  // cout<<"I'm back"<<endl;
-  // admin.registerDoctor("ABC", "Address", "9812391342","08-09-1991", "12345", "10-03-2015",10000000, "MBBS", "Neurology", nullptr);
-  // Manegerial manager("Manager", "123 Street", "9876", "09-08-1991", "1234", "09-10-2007", 20000,"MBA","Accounts",nullptr);
-  // manager.registerPatient("Patient1", "1-7-388", "81726", "07-08-2000", "7998");
-  // Doctor doctor("Doc", "A", "A", "A", "A", "A", 1, "A", "A", nullptr);
-  // doctor.addRecord(2, "Dengue", "07-08-2000", "Ongoing", 1);
-  // Patient patient("Patient1", "1-7-388", "81726", "07-08-2000", "7998");
-  // patient.showRecords(2);
-  // cout<<"Returned to main"<<endl;
+  int flag=1;
+  do{
+    int choice;
+    cout<<"Who are you?"<<endl;
+    cout<<"1. Administrator"<<endl;
+    cout<<"2. Managerial Staff"<<endl;
+    cout<<"3. Doctor"<<endl;
+    cout<<"4. Patient"<<endl;
+    cin>>choice;
+    switch(choice){
+      case 1: 
+          {
+            Admin admin("123456");
+            string password;
+            cout<<"Enter Password"<<endl;
+            cin>>password;
+            if(password.compare(admin.getPassword())!=0){
+              flag=0;
+              cout << "\x1b[2J\x1b[1;1H" << flush;
+              cout<<"Wrong Password.\nTaking you back to the Menu."<<endl;
+            }
+            else{
+            int choice;
+            cout<<"1. Create Hospital"<<endl;
+            cout<<"2. Register a Doctor"<<endl;
+            cout<<"3. Get count of entered disease"<<endl;
+            cout<<"4. Register a Managerial Staff"<<endl;
+            cout<<"5. Go back to menu"<<endl;
+            cin>>choice;
+            switch(choice){
+                case 1: 
+                    {
+                      string name,location,contact;
+                      cin.ignore();
+                      cout<<"Enter Name of the Hospital: "<<endl;
+                      getline(cin,name);
+                      cout<<"Enter location of the Hospital: "<<endl;
+                      getline(cin,location);
+                      cout<<"Enter Contact Number: "<<endl;
+                      cin>>contact;
+                      admin.createHospital(name,location,contact);
+                    }
+                    break;
+                case 2:
+                    {
+
+                    }
+              }
+            }
+          }
+      }
+    }while(flag==0);
 }

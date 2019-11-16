@@ -40,6 +40,7 @@ void Hospital::Write(string fileName)
   file << "Name: " << name << endl;
   file << "Location: " << location << endl;
   file << "Contact: " << contact << endl;
+  cout<<" The Hospital ID is "<<id<<endl;
 }
 
 // void Hospital::Read(){
