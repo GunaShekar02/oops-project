@@ -9,6 +9,10 @@ using namespace std;
 
 int Staff::numberOfStaff = 0;
 
+Staff::Staff(){
+
+}
+
 //staff constructor
 Staff::Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 						 long int _salary, string _degree, long _hospitalId) : Person(_name, _address, _contact, _dob, _aadhar)
@@ -17,9 +21,12 @@ Staff::Staff(string _name, string _address, string _contact, string _dob, string
 	doj = _doj;
 	salary = _salary;
 	degree = _degree;
-	hospitalId= _hospitalId
+	hospitalId= _hospitalId;
 }
 
+Medical::Medical(){
+
+}
 //Medical constructor
 Medical::Medical(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 								 long int _salary, string _degree, string _specialisation, long _hospitalId) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospitalId)
@@ -27,6 +34,9 @@ Medical::Medical(string _name, string _address, string _contact, string _dob, st
 	specialisation = _specialisation;
 }
 
+Manegerial::Manegerial(){
+
+}
 //Manegerial constructor
 Manegerial::Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 											 long int _salary, string _degree, string _job, long _hospitalId) : Staff(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _hospitalId)
@@ -54,6 +64,10 @@ void Manegerial::registerPatient(string _name, string _address, string _contact,
 	file.close();
 	Patient patient(_name, _address, _contact, _dob, _aadhar);
 	patient.Write();
+}
+
+Doctor::Doctor(){
+
 }
 
 //Doctor constructor
@@ -112,6 +126,7 @@ void Doctor::addRecord(long _patientId, string _disease, string _startDate, stri
 			tempFile << "Status: " << _status << endl;
 			tempFile << "HospitalID: " << _hospitalId << endl;
 			tempFile << line << endl;
+			cout<<"Record ID is "<<counter<<endl;
 		}
 		else
 		{
@@ -153,6 +168,7 @@ void Doctor::Write()
 	file << "Degree: " << degree << endl;
 	file << "Specialization: " << specialisation << endl;
 	file << "Hospital Id: "<< hospitalId <<endl;
+	cout<<"Registration Number is "<<registrationNumber<<endl;
 	// cout<<"Before close"<<endl;
 	file.close();
 }
@@ -170,9 +186,9 @@ void Manegerial::Write()
 			temp = stoi(line.substr(4));
 	}
 	file.close();
-	registrationNumber = temp + 1;
+	managerialId = temp + 1;
 	file.open("Managers.txt", ios::app | ios::in);
-	file << "RNO: " << registrationNumber << endl;
+	file << "Manegerial ID: " << managerialId << endl;
 	file << "Name: " << name << endl;
 	file << "Address: " << address << endl;
 	file << "Contact: " << contact << endl;
@@ -183,6 +199,7 @@ void Manegerial::Write()
 	file << "Degree: " << degree << endl;
 	file << "Job: " << job << endl;
 	file<<"Hospital Id: "<<hospitalId<<endl;
+	cout<<"Managerial ID is "<<managerialId<<endl; 
 	// cout<<"Before close"<<endl;
 	file.close();
 }
@@ -226,6 +243,7 @@ void Nurse::getInfo()
 	cout << "Salary: " << salary << endl;
 	cout << "Degree: " << degree << endl;
 	cout << "Specialisation: " << specialisation << endl;
-	cout << "---HOSPITAL---" << endl;
-	hospital->getInfo();
+	cout <<"Hospital Id: "<<hospitalId<<endl;
+
+	
 }

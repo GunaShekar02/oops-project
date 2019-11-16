@@ -17,6 +17,7 @@ protected:
 
 public:
 	static int numberOfPatients;
+	Patient();
 	Patient(string _name, string _address, string _contact, string _dob, string _aadhar);
 	void getInfo();
 	void showRecords(int id);

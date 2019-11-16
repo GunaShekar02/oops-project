@@ -14,10 +14,11 @@ protected:
 	string doj;
 	long int salary;
 	string degree;
-	long _hospitalId;
+	long hospitalId;
 
 public:
 	static int numberOfStaff;
+	Staff();
 	Staff(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 				long int _salary, string _degree, long _hospitalId);
 };
@@ -29,6 +30,7 @@ protected:
 	string specialisation;
 
 public:
+	Medical();
 	Medical(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 					long int _salary, string _degree, string _specialisation, long _hospitalId);
 };
@@ -38,8 +40,10 @@ class Manegerial : public Staff
 {
 protected:
 	string job;
+	int managerialId;
 
 public:
+	Manegerial();
 	Manegerial(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 						 long int _salary, string _degree, string _job, long _hospitalId);
 	void registerPatient(string _name, string _address, string _contact, string _dob, string _aadhar);
@@ -54,6 +58,7 @@ protected:
 	int registrationNumber;
 
 public:
+	Doctor();
 	Doctor(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
 				 long int _salary, string _degree, string _specialisation, long _hospitalId);
 	void getInfo();

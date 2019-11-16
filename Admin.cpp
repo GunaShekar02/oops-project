@@ -51,8 +51,8 @@ string Admin::getPassword(){
 }
 
 void Admin::createManager(string _name, string _address, string _contact, string _dob, string _aadhar, string _doj,
-                           long int _salary, string _degree, string _job, Hospital *_hospital)
+                           long int _salary, string _degree, string _job, long _hospitalId)
 {
-  Managerial manager(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _job, _hospital);
+  Manegerial manager(_name, _address, _contact, _dob, _aadhar, _doj, _salary, _degree, _job, _hospitalId);
   manager.Write();
 }

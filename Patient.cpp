@@ -8,6 +8,10 @@ using namespace std;
 
 int Patient::numberOfPatients = 0;
 
+Patient::Patient(){
+	
+}
+
 //Patient constructor
 Patient::Patient(string _name, string _address, string _contact, string _dob, string _aadhar) : Person(_name, _address, _contact, _dob, _aadhar)
 {
@@ -73,4 +77,5 @@ void Patient::Write()
 	file << "Aadhar: " << aadhaar << endl;
 	file << "RECORDS" << endl;
 	file.close();
+	cout<<"The Patient's ID is "<<patientId<<endl;
 }

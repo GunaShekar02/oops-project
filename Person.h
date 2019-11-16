@@ -12,7 +12,9 @@ protected:
 	string name, address, contact, dob, aadhaar;
 
 public:
+	Person();
 	Person(string _name, string _address, string _contact, string _dob, string _aadhar);
+	
 };
 
 #endif
