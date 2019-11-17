@@ -52,6 +52,10 @@ int main()
                       cout<<"Enter Contact Number: "<<endl;
                       cin>>contact;
                       admin.createHospital(name,location,contact);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                 case 2:
@@ -80,6 +84,10 @@ int main()
                       cout<<"Salary: "<<endl;
                       cin>>salary;
                       admin.registerDoctor(name,address,contact,dob,aadhar,doj,salary,degree,specialisation,hospitalId);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                 case 3:
@@ -88,6 +96,10 @@ int main()
                       cout<<"Enter disease name: "<<endl;
                       cin>>disease;
                       cout<<admin.getCountOfDisease(disease)<<endl;
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                 case 4:
@@ -116,6 +128,10 @@ int main()
                       cout<<"Salary: "<<endl;
                       cin>>salary;
                       admin.createManager(name,address,contact,dob,aadhar,doj,salary,degree,job,hospitalId);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                 case 5:
@@ -168,6 +184,10 @@ int main()
                       cout<<"Adhaar Number: "<<endl;
                       cin>>aadhar;
                       manager.registerPatient(name,address,contact,dob,aadhar);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                   case 2:
@@ -221,6 +241,10 @@ int main()
                       cout<<"Hospital ID: "<<endl;
                       cin>>hospitalId;
                       doctor.addRecord(patientid,disease,startdate,status,hospitalId);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                   case 2:
@@ -256,6 +280,10 @@ int main()
                       cout<<"Enter Your ID: "<<endl;
                       cin>>id;
                       patient.showRecords(id);
+                      cout<<"Do you want to continue?(Press 0 for yes)"<<endl;
+                      int n;
+                      cin>>n;
+                      flag=n;
                     }
                     break;
                   case 2:
